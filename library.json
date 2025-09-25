@@ -12,5 +12,13 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/OpenKNX/OFM-BusPowerSupply"
-    }
+    },
+    "dependencies":
+    [
+        {
+            "owner": "robtillaart",
+            "name": "INA226",
+            "version": "^0.6.4"
+        }
+    ]
 }

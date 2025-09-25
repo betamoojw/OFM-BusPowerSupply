@@ -2,6 +2,7 @@
 #include "OpenKNX.h"
 #include "hardware.h"
 #include "knxprod.h"
+#include "INA226.h"
 
 // #define OPENKNX_BPS_FLASH_VERSION 0
 // #define OPENKNX_BPS_FLASH_MAGIC_WORD 0
@@ -33,6 +34,10 @@ class BusPowerSupplyModule : public OpenKNX::Module
     void runTestMode();
 
   private:
+    INA226 inaKnx = INA226(OPENKNX_BPS_CURRENT_KNX_INA_ADDR, &OPENKNX_GPIO_WIRE);
+    INA226 inaAux = INA226(OPENKNX_BPS_CURRENT_AUX_INA_ADDR, &OPENKNX_GPIO_WIRE);
+
+    uint32_t debugTimer = 0;
 };
 
 extern BusPowerSupplyModule openknxBusPowerSupplyModule;
