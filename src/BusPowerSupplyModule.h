@@ -12,11 +12,6 @@
 
 #define CH_SWITCH_DEBOUNCE 250
 
-#define TEMPERATURE_MIN_DIFFERENCE 0.5
-#define VOLTAGE_MIN_DIFFERENCE 500
-#define CURRENT_MIN_DIFFERENCE 50
-#define LOAD_MIN_DIFFERENCE 5
-
 #define BUS_LOAD_UPDATE_RATE 1000
 #define BUS_LOAD_MAX_BYTES_PER_SECOND 800
 
@@ -71,18 +66,22 @@ class BusPowerSupplyModule : public OpenKNX::Module
     bool _busOk = true;
     bool _currentOk = true;
 
+    float _lastPowerSupply1Sent = 0;
+    float _lastPowerSupply2Sent = 0;
     float _lastBusVoltageSent = 0;
     float _lastBusCurrentSent = 0;
     float _lastBusLoadSent = 0;
     float _lastAuxVoltageSent = 0;
     float _lastAuxCurrentSent = 0;
     float _lastTemperatureSent = 0;
-    uint32_t _busVoltageSentTimer = 0;
-    uint32_t _busCurrentSentTimer = 0;
-    uint32_t _busLoadSentTimer = 0;
-    uint32_t _auxVoltageSentTimer = 0;
-    uint32_t _auxCurrentSentTimer = 0;
-    uint32_t _temperaturSentTimer = 0;
+    uint32_t _powerSupply1SendTimer = 0;
+    uint32_t _powerSupply2SendTimer = 0;
+    uint32_t _busVoltageSendTimer = 0;
+    uint32_t _busCurrentSendTimer = 0;
+    uint32_t _busLoadSendTimer = 0;
+    uint32_t _auxVoltageSendTimer = 0;
+    uint32_t _auxCurrentSendTimer = 0;
+    uint32_t _temperaturSendTimer = 0;
 
     uint32_t _busLoadUpdateTimer = 0;
     uint32_t _rxLastBusLoadTime;

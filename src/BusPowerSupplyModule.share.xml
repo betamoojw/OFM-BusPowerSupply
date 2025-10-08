@@ -10,75 +10,93 @@
               <ParameterType Id="%AID%_PT-ResetTime" Name="ResetTime">
                 <TypeNumber SizeInBit="8" Type="unsignedInt" minInclusive="1" maxInclusive="255" />
               </ParameterType>
-              <ParameterType Id="%AID%_PT-TemperatureWarning" Name="TemperatureWarning">
-                <TypeNumber SizeInBit="8" Type="unsignedInt" minInclusive="20" maxInclusive="100" />
+              <ParameterType Id="%AID%_PT-MinimumChange" Name="MinimumChange">
+                <TypeNumber SizeInBit="16" Type="signedInt" minInclusive="0" maxInclusive="1000" />
               </ParameterType>
             </ParameterTypes>
             <Parameters>
               <Union SizeInBit="8">
                 <Memory CodeSegment="%AID%_RS-04-00000" Offset="0" BitOffset="0" />
-                <Parameter Id="%AID%_UP-%TT%00019" Name="ResetTime" ParameterType="%AID%_PT-ResetTime" Offset="0" BitOffset="0" Text="Resetzeit" Value="10" SuffixText="s" />
+                <Parameter Id="%AID%_UP-%TT%00001" Name="ResetTime" ParameterType="%AID%_PT-ResetTime" Offset="0" BitOffset="0" Text="Resetzeit" Value="10" SuffixText="s" />
               </Union>
               <Union SizeInBit="272">
                 <Memory CodeSegment="%AID%_RS-04-00000" Offset="1" BitOffset="0" />
-                <Parameter Id="%AID%_UP-%TT%00001" Name="PowerSupply1ChangeSend"  ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="0" Text="Busspannung senden" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00002" Name="PowerSupply2ChangeSend"  ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="1" Text="Busspannung senden" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00003" Name="BusVoltageChangeSend"  ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="2" Text="Busspannung senden" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00004" Name="BusCurrentChangeSend"  ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="3" Text="Busstrom senden" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00005" Name="BusLoadChangeSend"     ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="4" Text="Busauslastung senden" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00006" Name="AuxVoltageChangeSend"  ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="5" Text="AUX-Spannung senden" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00007" Name="AuxCurrentChangeSend"  ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="6" Text="AUX-Strom senden" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00008" Name="TemperatureChangeSend" ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="7" Text="Temperatur senden" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00009" Name="PowerSupply1SendCyclicBase"  ParameterType="%AID%_PT-DelayBase" Offset="1" BitOffset="0" Text="Zeitbasis" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00010" Name="PowerSupply1SendCyclicTime"  ParameterType="%AID%_PT-DelayTime" Offset="1" BitOffset="2" Text="Zeit" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00011" Name="PowerSupply2SendCyclicBase"  ParameterType="%AID%_PT-DelayBase" Offset="3" BitOffset="0" Text="Zeitbasis" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00012" Name="PowerSupply2SendCyclicTime"  ParameterType="%AID%_PT-DelayTime" Offset="3" BitOffset="2" Text="Zeit" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00013" Name="BusVoltageSendMinChangePercent" ParameterType="%AID%_PT-Percentage" Offset="5" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
-                <Parameter Id="%AID%_UP-%TT%00014" Name="BusVoltageSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="6" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="W" />
-                <Parameter Id="%AID%_UP-%TT%00015" Name="BusVoltageSendCyclicBase"  ParameterType="%AID%_PT-DelayBase" Offset="8" BitOffset="0" Text="Zeitbasis" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00016" Name="BusVoltageSendCyclicTime"  ParameterType="%AID%_PT-DelayTime" Offset="8" BitOffset="2" Text="Zeit" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00017" Name="BusCurrentSendMinChangePercent" ParameterType="%AID%_PT-Percentage" Offset="10" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
-                <Parameter Id="%AID%_UP-%TT%00018" Name="BusCurrentSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="11" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="W" />
-                <Parameter Id="%AID%_UP-%TT%00019" Name="BusCurrentSendCyclicBase"  ParameterType="%AID%_PT-DelayBase" Offset="13" BitOffset="0" Text="Zeitbasis" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00020" Name="BusCurrentSendCyclicTime"  ParameterType="%AID%_PT-DelayTime" Offset="13" BitOffset="2" Text="Zeit" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00021" Name="BusLoadSendMinChangePercent" ParameterType="%AID%_PT-Percentage" Offset="15" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
-                <Parameter Id="%AID%_UP-%TT%00022" Name="BusLoadSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="16" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="W" />
-                <Parameter Id="%AID%_UP-%TT%00023" Name="BusLoadSendCyclicBase"     ParameterType="%AID%_PT-DelayBase" Offset="18" BitOffset="0" Text="Zeitbasis" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00024" Name="BusLoadSendCyclicTime"     ParameterType="%AID%_PT-DelayTime" Offset="18" BitOffset="2" Text="Zeit" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00025" Name="AuxVoltageSendMinChangePercent" ParameterType="%AID%_PT-Percentage" Offset="20" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
-                <Parameter Id="%AID%_UP-%TT%00026" Name="AuxVoltageSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="21" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="W" />
-                <Parameter Id="%AID%_UP-%TT%00027" Name="AuxVoltageSendCyclicBase"  ParameterType="%AID%_PT-DelayBase" Offset="23" BitOffset="0" Text="Zeitbasis" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00028" Name="AuxVoltageSendCyclicTime"  ParameterType="%AID%_PT-DelayTime" Offset="23" BitOffset="2" Text="Zeit" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00029" Name="AuxCurrentSendMinChangePercent" ParameterType="%AID%_PT-Percentage" Offset="25" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
-                <Parameter Id="%AID%_UP-%TT%00030" Name="AuxCurrentSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="26" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="W" />
-                <Parameter Id="%AID%_UP-%TT%00031" Name="AuxCurrentSendCyclicBase"  ParameterType="%AID%_PT-DelayBase" Offset="28" BitOffset="0" Text="Zeitbasis" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00032" Name="AuxCurrentSendCyclicTime"  ParameterType="%AID%_PT-DelayTime" Offset="28" BitOffset="2" Text="Zeit" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00033" Name="TemperatureSendMinChangePercent" ParameterType="%AID%_PT-Percentage" Offset="30" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
-                <Parameter Id="%AID%_UP-%TT%00034" Name="TemperatureSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="31" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="W" />
-                <Parameter Id="%AID%_UP-%TT%00035" Name="TemperatureSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="33" BitOffset="0" Text="Zeitbasis" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00036" Name="TemperatureSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="33" BitOffset="2" Text="Zeit" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00002" Name="PowerSupply1ChangeSend" ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="0" Text="Status Netzteil 1 senden" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00003" Name="PowerSupply2ChangeSend" ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="1" Text="Status Netzteil 2 senden" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00004" Name="BusVoltageChangeSend" ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="2" Text="Busspannung senden" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00005" Name="BusCurrentChangeSend" ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="3" Text="Busstrom senden" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00006" Name="BusLoadChangeSend" ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="4" Text="Busauslastung senden" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00007" Name="AuxVoltageChangeSend" ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="5" Text="AUX-Spannung senden" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00008" Name="AuxCurrentChangeSend" ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="6" Text="AUX-Strom senden" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00009" Name="TemperatureChangeSend" ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="7" Text="Temperatur senden" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00010" Name="PowerSupply1SendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="1" BitOffset="0" Text="Zeitbasis" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00011" Name="PowerSupply1SendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="1" BitOffset="2" Text="Zeit" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00012" Name="PowerSupply2SendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="3" BitOffset="0" Text="Zeitbasis" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00013" Name="PowerSupply2SendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="3" BitOffset="2" Text="Zeit" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00014" Name="BusVoltageSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="5" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
+                <Parameter Id="%AID%_UP-%TT%00015" Name="BusVoltageSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="6" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="V" />
+                <Parameter Id="%AID%_UP-%TT%00016" Name="BusVoltageSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="8" BitOffset="0" Text="Zeitbasis" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00017" Name="BusVoltageSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="8" BitOffset="2" Text="Zeit" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00018" Name="BusCurrentSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="10" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
+                <Parameter Id="%AID%_UP-%TT%00019" Name="BusCurrentSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="11" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="mA" />
+                <Parameter Id="%AID%_UP-%TT%00020" Name="BusCurrentSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="13" BitOffset="0" Text="Zeitbasis" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00021" Name="BusCurrentSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="13" BitOffset="2" Text="Zeit" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00022" Name="BusLoadSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="15" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
+                <Parameter Id="%AID%_UP-%TT%00023" Name="BusLoadSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="16" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="%" />
+                <Parameter Id="%AID%_UP-%TT%00024" Name="BusLoadSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="18" BitOffset="0" Text="Zeitbasis" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00025" Name="BusLoadSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="18" BitOffset="2" Text="Zeit" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00026" Name="AuxVoltageSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="20" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
+                <Parameter Id="%AID%_UP-%TT%00027" Name="AuxVoltageSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="21" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="V" />
+                <Parameter Id="%AID%_UP-%TT%00028" Name="AuxVoltageSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="23" BitOffset="0" Text="Zeitbasis" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00029" Name="AuxVoltageSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="23" BitOffset="2" Text="Zeit" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00030" Name="AuxCurrentSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="25" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
+                <Parameter Id="%AID%_UP-%TT%00031" Name="AuxCurrentSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="26" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="mA" />
+                <Parameter Id="%AID%_UP-%TT%00032" Name="AuxCurrentSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="28" BitOffset="0" Text="Zeitbasis" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00033" Name="AuxCurrentSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="28" BitOffset="2" Text="Zeit" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00034" Name="TemperatureSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="30" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
+                <Parameter Id="%AID%_UP-%TT%00035" Name="TemperatureSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="31" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="°C" />
+                <Parameter Id="%AID%_UP-%TT%00036" Name="TemperatureSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="33" BitOffset="0" Text="Zeitbasis" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00037" Name="TemperatureSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="33" BitOffset="2" Text="Zeit" Value="0" />
               </Union>
             </Parameters>
             <ParameterRefs>
+              <ParameterRef Id="%AID%_UP-%TT%00001_R-%TT%0000101" RefId="%AID%_UP-%TT%00001" />
+              <ParameterRef Id="%AID%_UP-%TT%00002_R-%TT%0000201" RefId="%AID%_UP-%TT%00002" />
               <ParameterRef Id="%AID%_UP-%TT%00003_R-%TT%0000301" RefId="%AID%_UP-%TT%00003" />
               <ParameterRef Id="%AID%_UP-%TT%00004_R-%TT%0000401" RefId="%AID%_UP-%TT%00004" />
               <ParameterRef Id="%AID%_UP-%TT%00005_R-%TT%0000501" RefId="%AID%_UP-%TT%00005" />
               <ParameterRef Id="%AID%_UP-%TT%00006_R-%TT%0000601" RefId="%AID%_UP-%TT%00006" />
               <ParameterRef Id="%AID%_UP-%TT%00007_R-%TT%0000701" RefId="%AID%_UP-%TT%00007" />
               <ParameterRef Id="%AID%_UP-%TT%00008_R-%TT%0000801" RefId="%AID%_UP-%TT%00008" />
+              <ParameterRef Id="%AID%_UP-%TT%00009_R-%TT%0000901" RefId="%AID%_UP-%TT%00009" />
+              <ParameterRef Id="%AID%_UP-%TT%00010_R-%TT%0001001" RefId="%AID%_UP-%TT%00010" />
+              <ParameterRef Id="%AID%_UP-%TT%00011_R-%TT%0001101" RefId="%AID%_UP-%TT%00011" />
+              <ParameterRef Id="%AID%_UP-%TT%00012_R-%TT%0001201" RefId="%AID%_UP-%TT%00012" />
+              <ParameterRef Id="%AID%_UP-%TT%00013_R-%TT%0001301" RefId="%AID%_UP-%TT%00013" />
+              <ParameterRef Id="%AID%_UP-%TT%00014_R-%TT%0001401" RefId="%AID%_UP-%TT%00014" />
               <ParameterRef Id="%AID%_UP-%TT%00015_R-%TT%0001501" RefId="%AID%_UP-%TT%00015" />
               <ParameterRef Id="%AID%_UP-%TT%00016_R-%TT%0001601" RefId="%AID%_UP-%TT%00016" />
+              <ParameterRef Id="%AID%_UP-%TT%00017_R-%TT%0001701" RefId="%AID%_UP-%TT%00017" />
+              <ParameterRef Id="%AID%_UP-%TT%00018_R-%TT%0001801" RefId="%AID%_UP-%TT%00018" />
               <ParameterRef Id="%AID%_UP-%TT%00019_R-%TT%0001901" RefId="%AID%_UP-%TT%00019" />
               <ParameterRef Id="%AID%_UP-%TT%00020_R-%TT%0002001" RefId="%AID%_UP-%TT%00020" />
+              <ParameterRef Id="%AID%_UP-%TT%00021_R-%TT%0002101" RefId="%AID%_UP-%TT%00021" />
+              <ParameterRef Id="%AID%_UP-%TT%00022_R-%TT%0002201" RefId="%AID%_UP-%TT%00022" />
               <ParameterRef Id="%AID%_UP-%TT%00023_R-%TT%0002301" RefId="%AID%_UP-%TT%00023" />
               <ParameterRef Id="%AID%_UP-%TT%00024_R-%TT%0002401" RefId="%AID%_UP-%TT%00024" />
+              <ParameterRef Id="%AID%_UP-%TT%00025_R-%TT%0002501" RefId="%AID%_UP-%TT%00025" />
+              <ParameterRef Id="%AID%_UP-%TT%00026_R-%TT%0002601" RefId="%AID%_UP-%TT%00026" />
               <ParameterRef Id="%AID%_UP-%TT%00027_R-%TT%0002701" RefId="%AID%_UP-%TT%00027" />
               <ParameterRef Id="%AID%_UP-%TT%00028_R-%TT%0002801" RefId="%AID%_UP-%TT%00028" />
+              <ParameterRef Id="%AID%_UP-%TT%00029_R-%TT%0002901" RefId="%AID%_UP-%TT%00029" />
+              <ParameterRef Id="%AID%_UP-%TT%00030_R-%TT%0003001" RefId="%AID%_UP-%TT%00030" />
               <ParameterRef Id="%AID%_UP-%TT%00031_R-%TT%0003101" RefId="%AID%_UP-%TT%00031" />
               <ParameterRef Id="%AID%_UP-%TT%00032_R-%TT%0003201" RefId="%AID%_UP-%TT%00032" />
+              <ParameterRef Id="%AID%_UP-%TT%00033_R-%TT%0003301" RefId="%AID%_UP-%TT%00033" />
+              <ParameterRef Id="%AID%_UP-%TT%00034_R-%TT%0003401" RefId="%AID%_UP-%TT%00034" />
               <ParameterRef Id="%AID%_UP-%TT%00035_R-%TT%0003501" RefId="%AID%_UP-%TT%00035" />
               <ParameterRef Id="%AID%_UP-%TT%00036_R-%TT%0003601" RefId="%AID%_UP-%TT%00036" />
-              <ParameterRef Id="%AID%_UP-%TT%00019_R-%TT%0001901" RefId="%AID%_UP-%TT%00019" />
+              <ParameterRef Id="%AID%_UP-%TT%00037_R-%TT%0003701" RefId="%AID%_UP-%TT%00037" />
             </ParameterRefs>
             <ComObjectTable>
               <ComObject Id="%AID%_O-%TT%00001" Name="PowerSupply1Status" Number="0" ObjectSize="1 Bit" Text="Status Netzteil 1" FunctionText="Status" ReadFlag="Enabled" WriteFlag="Disabled" CommunicationFlag="Enabled" TransmitFlag="Enabled" UpdateFlag="Disabled" ReadOnInitFlag="Disabled" DatapointType="DPST-1-1" />
@@ -112,14 +130,13 @@
                 <ParameterSeparator Id="%AID%_PS-nnn" Text="" UIHint="HorizontalRuler" />
 
                 <ParameterSeparator Id="%AID%_PS-nnn" Text="Einstellungen" UIHint="Headline" />
-                <ParameterRefRef RefId="%AID%_UP-%TT%00019_R-%TT%0001901" IndentLevel="1" /> <!-- Reset Time -->
+                <ParameterRefRef RefId="%AID%_UP-%TT%00001_R-%TT%0000101" IndentLevel="1" /> <!-- Reset Time -->
 
                 <ParameterSeparator Id="%AID%_PS-nnn" Text="Ausgaben" UIHint="Headline"/>
-                <ParameterRefRef RefId="%AID%_UP-%TT%00003_R-%TT%0000301" IndentLevel="1" /> <!-- Bus Voltage -->
-                <choose ParamRefId="%AID%_UP-%TT%00003_R-%TT%0000301">
+                <ParameterRefRef RefId="%AID%_UP-%TT%00002_R-%TT%0000201" IndentLevel="1" /> <!-- Power Supply 1 -->
+                <choose ParamRefId="%AID%_UP-%TT%00002_R-%TT%0000201">
                   <when test="1">
-                    <!-- Status Cyclic pattern -->
-                    <ParameterBlock Id="%AID%_PB-nnn" Name="BusVoltageCyclic" Inline="true" Layout="Grid">
+                    <ParameterBlock Id="%AID%_PB-nnn" Name="PowerSupply1Cyclic" Inline="true" Layout="Grid"> <!-- cyclic pattern -->
                       <Rows>
                         <Row Id="%AID%_PB-nnn_R-1" Name="Row1" />
                       </Rows>
@@ -129,19 +146,64 @@
                         <Column Id="%AID%_PB-nnn_C-3" Name="Col3" Width="15%" />
                         <Column Id="%AID%_PB-nnn_C-4" Name="Col4" Width="20%" />
                       </Columns>
-                      <ParameterSeparator Id="%AID%_PS-nnn" Text="  Busspannung zyklisch senden&#10;  (0 = nicht senden)" Cell="1,2" />
-                      <ParameterRefRef RefId="%AID%_UP-%TT%00016_R-%TT%0001601" Cell="1,3" />
-                      <ParameterRefRef RefId="%AID%_UP-%TT%00015_R-%TT%0001501" Cell="1,4" />
+                      <ParameterSeparator Id="%AID%_PS-nnn" Text="   Status Netzteil 1 zyklisch senden&#10;   (0 = nicht senden)" Cell="1,2" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00011_R-%TT%0001101" Cell="1,3" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00010_R-%TT%0001001" Cell="1,4" />
+                    </ParameterBlock>
+
+                    <ComObjectRefRef RefId="%AID%_O-%TT%00001_R-%TT%0000101" />
+                  </when>
+                </choose>
+                <ParameterRefRef RefId="%AID%_UP-%TT%00003_R-%TT%0000301" IndentLevel="1" /> <!-- Power Supply 2 -->
+                <choose ParamRefId="%AID%_UP-%TT%00003_R-%TT%0000301">
+                  <when test="1">
+                    <ParameterBlock Id="%AID%_PB-nnn" Name="PowerSupply2Cyclic" Inline="true" Layout="Grid"> <!-- cyclic pattern -->
+                      <Rows>
+                        <Row Id="%AID%_PB-nnn_R-1" Name="Row1" />
+                      </Rows>
+                      <Columns>
+                        <Column Id="%AID%_PB-nnn_C-1" Name="Col1" Width="1%" />
+                        <Column Id="%AID%_PB-nnn_C-2" Name="Col2" Width="44%" />
+                        <Column Id="%AID%_PB-nnn_C-3" Name="Col3" Width="15%" />
+                        <Column Id="%AID%_PB-nnn_C-4" Name="Col4" Width="20%" />
+                      </Columns>
+                      <ParameterSeparator Id="%AID%_PS-nnn" Text="   Status Netzteil 2 zyklisch senden&#10;   (0 = nicht senden)" Cell="1,2" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00013_R-%TT%0001301" Cell="1,3" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00012_R-%TT%0001201" Cell="1,4" />
+                    </ParameterBlock>
+
+                    <ComObjectRefRef RefId="%AID%_O-%TT%00002_R-%TT%0000201" />
+                  </when>
+                </choose>
+                <ParameterRefRef RefId="%AID%_UP-%TT%00004_R-%TT%0000401" IndentLevel="1" /> <!-- Bus Voltage -->
+                <choose ParamRefId="%AID%_UP-%TT%00004_R-%TT%0000401">
+                  <when test="1">
+                    <ParameterRefRef RefId="%AID%_UP-%TT%00014_R-%TT%0001401" IndentLevel="2" />
+                    <ParameterRefRef RefId="%AID%_UP-%TT%00015_R-%TT%0001501" IndentLevel="2" />
+                    <ParameterBlock Id="%AID%_PB-nnn" Name="BusVoltageCyclic" Inline="true" Layout="Grid"> <!-- cyclic pattern -->
+                      <Rows>
+                        <Row Id="%AID%_PB-nnn_R-1" Name="Row1" />
+                      </Rows>
+                      <Columns>
+                        <Column Id="%AID%_PB-nnn_C-1" Name="Col1" Width="1%" />
+                        <Column Id="%AID%_PB-nnn_C-2" Name="Col2" Width="44%" />
+                        <Column Id="%AID%_PB-nnn_C-3" Name="Col3" Width="15%" />
+                        <Column Id="%AID%_PB-nnn_C-4" Name="Col4" Width="20%" />
+                      </Columns>
+                      <ParameterSeparator Id="%AID%_PS-nnn" Text="   Busspannung zyklisch senden&#10;   (0 = nicht senden)" Cell="1,2" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00017_R-%TT%0001701" Cell="1,3" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00016_R-%TT%0001601" Cell="1,4" />
                     </ParameterBlock>
 
                     <ComObjectRefRef RefId="%AID%_O-%TT%00004_R-%TT%0000401" />
                   </when>
                 </choose>
-                <ParameterRefRef RefId="%AID%_UP-%TT%00004_R-%TT%0000401" IndentLevel="1" /> <!-- Bus Current -->
-                <choose ParamRefId="%AID%_UP-%TT%00004_R-%TT%0000401">
+                <ParameterRefRef RefId="%AID%_UP-%TT%00005_R-%TT%0000501" IndentLevel="1" /> <!-- Bus Current -->
+                <choose ParamRefId="%AID%_UP-%TT%00005_R-%TT%0000501">
                   <when test="1">
-                    <!-- Status Cyclic pattern -->
-                    <ParameterBlock Id="%AID%_PB-nnn" Name="BusCurrentCyclic" Inline="true" Layout="Grid">
+                    <ParameterRefRef RefId="%AID%_UP-%TT%00018_R-%TT%0001801" IndentLevel="2" />
+                    <ParameterRefRef RefId="%AID%_UP-%TT%00019_R-%TT%0001901" IndentLevel="2" />
+                    <ParameterBlock Id="%AID%_PB-nnn" Name="BusCurrentCyclic" Inline="true" Layout="Grid"> <!-- cyclic pattern -->
                       <Rows>
                         <Row Id="%AID%_PB-nnn_R-1" Name="Row1" />
                       </Rows>
@@ -151,19 +213,20 @@
                         <Column Id="%AID%_PB-nnn_C-3" Name="Col3" Width="15%" />
                         <Column Id="%AID%_PB-nnn_C-4" Name="Col4" Width="20%" />
                       </Columns>
-                      <ParameterSeparator Id="%AID%_PS-nnn" Text="  Busstrom zyklisch senden&#10;  (0 = nicht senden)" Cell="1,2" />
-                      <ParameterRefRef RefId="%AID%_UP-%TT%00020_R-%TT%0002001" Cell="1,3" />
-                      <ParameterRefRef RefId="%AID%_UP-%TT%00019_R-%TT%0001901" Cell="1,4" />
+                      <ParameterSeparator Id="%AID%_PS-nnn" Text="   Busstrom zyklisch senden&#10;   (0 = nicht senden)" Cell="1,2" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00021_R-%TT%0002101" Cell="1,3" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00020_R-%TT%0002001" Cell="1,4" />
                     </ParameterBlock>
 
                     <ComObjectRefRef RefId="%AID%_O-%TT%00005_R-%TT%0000501" />
                   </when>
                 </choose>
-                <ParameterRefRef RefId="%AID%_UP-%TT%00005_R-%TT%0000501" IndentLevel="1" /> <!-- Bus Load -->
-                <choose ParamRefId="%AID%_UP-%TT%00005_R-%TT%0000501">
+                <ParameterRefRef RefId="%AID%_UP-%TT%00006_R-%TT%0000601" IndentLevel="1" /> <!-- Bus Load -->
+                <choose ParamRefId="%AID%_UP-%TT%00006_R-%TT%0000601">
                   <when test="1">
-                    <!-- Status Cyclic pattern -->
-                    <ParameterBlock Id="%AID%_PB-nnn" Name="BusLoadCyclic" Inline="true" Layout="Grid">
+                    <ParameterRefRef RefId="%AID%_UP-%TT%00022_R-%TT%0002201" IndentLevel="2" />
+                    <ParameterRefRef RefId="%AID%_UP-%TT%00023_R-%TT%0002301" IndentLevel="2" />
+                    <ParameterBlock Id="%AID%_PB-nnn" Name="BusLoadCyclic" Inline="true" Layout="Grid"> <!-- cyclic pattern -->
                       <Rows>
                         <Row Id="%AID%_PB-nnn_R-1" Name="Row1" />
                       </Rows>
@@ -173,19 +236,20 @@
                         <Column Id="%AID%_PB-nnn_C-3" Name="Col3" Width="15%" />
                         <Column Id="%AID%_PB-nnn_C-4" Name="Col4" Width="20%" />
                       </Columns>
-                      <ParameterSeparator Id="%AID%_PS-nnn" Text="  Busverkehr zyklisch senden&#10;  (0 = nicht senden)" Cell="1,2" />
-                      <ParameterRefRef RefId="%AID%_UP-%TT%00024_R-%TT%0002401" Cell="1,3" />
-                      <ParameterRefRef RefId="%AID%_UP-%TT%00023_R-%TT%0002301" Cell="1,4" />
+                      <ParameterSeparator Id="%AID%_PS-nnn" Text="   Busverkehr zyklisch senden&#10;   (0 = nicht senden)" Cell="1,2" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00025_R-%TT%0002501" Cell="1,3" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00024_R-%TT%0002401" Cell="1,4" />
                     </ParameterBlock>
 
                     <ComObjectRefRef RefId="%AID%_O-%TT%00006_R-%TT%0000601" />
                   </when>
                 </choose>
-                <ParameterRefRef RefId="%AID%_UP-%TT%00006_R-%TT%0000601" IndentLevel="1" /> <!-- AUX Voltage -->
-                <choose ParamRefId="%AID%_UP-%TT%00006_R-%TT%0000601">
+                <ParameterRefRef RefId="%AID%_UP-%TT%00007_R-%TT%0000701" IndentLevel="1" /> <!-- AUX Voltage -->
+                <choose ParamRefId="%AID%_UP-%TT%00007_R-%TT%0000701">
                   <when test="1">
-                    <!-- Status Cyclic pattern -->
-                    <ParameterBlock Id="%AID%_PB-nnn" Name="AUXVoltageCyclic" Inline="true" Layout="Grid">
+                    <ParameterRefRef RefId="%AID%_UP-%TT%00026_R-%TT%0002601" IndentLevel="2" />
+                    <ParameterRefRef RefId="%AID%_UP-%TT%00027_R-%TT%0002701" IndentLevel="2" />
+                    <ParameterBlock Id="%AID%_PB-nnn" Name="AUXVoltageCyclic" Inline="true" Layout="Grid"> <!-- cyclic pattern -->
                       <Rows>
                         <Row Id="%AID%_PB-nnn_R-1" Name="Row1" />
                       </Rows>
@@ -195,19 +259,20 @@
                         <Column Id="%AID%_PB-nnn_C-3" Name="Col3" Width="15%" />
                         <Column Id="%AID%_PB-nnn_C-4" Name="Col4" Width="20%" />
                       </Columns>
-                      <ParameterSeparator Id="%AID%_PS-nnn" Text="  AUX-Spannung zyklisch senden&#10;  (0 = nicht senden)" Cell="1,2" />
-                      <ParameterRefRef RefId="%AID%_UP-%TT%00028_R-%TT%0002801" Cell="1,3" />
-                      <ParameterRefRef RefId="%AID%_UP-%TT%00027_R-%TT%0002701" Cell="1,4" />
+                      <ParameterSeparator Id="%AID%_PS-nnn" Text="   AUX-Spannung zyklisch senden&#10;   (0 = nicht senden)" Cell="1,2" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00029_R-%TT%0002901" Cell="1,3" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00028_R-%TT%0002801" Cell="1,4" />
                     </ParameterBlock>
 
                     <ComObjectRefRef RefId="%AID%_O-%TT%00007_R-%TT%0000701" />
                   </when>
                 </choose>
-                <ParameterRefRef RefId="%AID%_UP-%TT%00007_R-%TT%0000701" IndentLevel="1" /> <!-- AUX Current -->
-                <choose ParamRefId="%AID%_UP-%TT%00007_R-%TT%0000701">
+                <ParameterRefRef RefId="%AID%_UP-%TT%00008_R-%TT%0000801" IndentLevel="1" /> <!-- AUX Current -->
+                <choose ParamRefId="%AID%_UP-%TT%00008_R-%TT%0000801">
                   <when test="1">
-                    <!-- Status Cyclic pattern -->
-                    <ParameterBlock Id="%AID%_PB-nnn" Name="AUXCurrentCyclic" Inline="true" Layout="Grid">
+                    <ParameterRefRef RefId="%AID%_UP-%TT%00030_R-%TT%0003001" IndentLevel="2" />
+                    <ParameterRefRef RefId="%AID%_UP-%TT%00031_R-%TT%0003101" IndentLevel="2" />
+                    <ParameterBlock Id="%AID%_PB-nnn" Name="AUXCurrentCyclic" Inline="true" Layout="Grid"> <!-- cyclic pattern -->
                       <Rows>
                         <Row Id="%AID%_PB-nnn_R-1" Name="Row1" />
                       </Rows>
@@ -217,19 +282,20 @@
                         <Column Id="%AID%_PB-nnn_C-3" Name="Col3" Width="15%" />
                         <Column Id="%AID%_PB-nnn_C-4" Name="Col4" Width="20%" />
                       </Columns>
-                      <ParameterSeparator Id="%AID%_PS-nnn" Text="  AUX-Strom zyklisch senden&#10;  (0 = nicht senden)" Cell="1,2" />
-                      <ParameterRefRef RefId="%AID%_UP-%TT%00032_R-%TT%0003201" Cell="1,3" />
-                      <ParameterRefRef RefId="%AID%_UP-%TT%00031_R-%TT%0003101" Cell="1,4" />
+                      <ParameterSeparator Id="%AID%_PS-nnn" Text="   AUX-Strom zyklisch senden&#10;   (0 = nicht senden)" Cell="1,2" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00033_R-%TT%0003301" Cell="1,3" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00032_R-%TT%0003201" Cell="1,4" />
                     </ParameterBlock>
 
                     <ComObjectRefRef RefId="%AID%_O-%TT%00008_R-%TT%0000801" />
                   </when>
                 </choose>
-                <ParameterRefRef RefId="%AID%_UP-%TT%00008_R-%TT%0000801" IndentLevel="1" /> <!-- Temperature -->
-                <choose ParamRefId="%AID%_UP-%TT%00008_R-%TT%0000801">
+                <ParameterRefRef RefId="%AID%_UP-%TT%00009_R-%TT%0000901" IndentLevel="1" /> <!-- Temperature -->
+                <choose ParamRefId="%AID%_UP-%TT%00009_R-%TT%0000901">
                   <when test="1">
-                    <!-- Status Cyclic pattern -->
-                    <ParameterBlock Id="%AID%_PB-nnn" Name="TemperatureCyclic" Inline="true" Layout="Grid">
+                    <ParameterRefRef RefId="%AID%_UP-%TT%00034_R-%TT%0003401" IndentLevel="2" />
+                    <ParameterRefRef RefId="%AID%_UP-%TT%00035_R-%TT%0003501" IndentLevel="2" />
+                    <ParameterBlock Id="%AID%_PB-nnn" Name="TemperatureCyclic" Inline="true" Layout="Grid"> <!-- cyclic pattern -->
                       <Rows>
                         <Row Id="%AID%_PB-nnn_R-1" Name="Row1" />
                       </Rows>
@@ -239,9 +305,9 @@
                         <Column Id="%AID%_PB-nnn_C-3" Name="Col3" Width="15%" />
                         <Column Id="%AID%_PB-nnn_C-4" Name="Col4" Width="20%" />
                       </Columns>
-                      <ParameterSeparator Id="%AID%_PS-nnn" Text="  Temperatur zyklisch senden&#10;  (0 = nicht senden)" Cell="1,2" />
-                      <ParameterRefRef RefId="%AID%_UP-%TT%00036_R-%TT%0003601" Cell="1,3" />
-                      <ParameterRefRef RefId="%AID%_UP-%TT%00035_R-%TT%0003501" Cell="1,4" />
+                      <ParameterSeparator Id="%AID%_PS-nnn" Text="   Temperatur zyklisch senden&#10;   (0 = nicht senden)" Cell="1,2" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00037_R-%TT%0003701" Cell="1,3" />
+                      <ParameterRefRef RefId="%AID%_UP-%TT%00036_R-%TT%0003601" Cell="1,4" />
                     </ParameterBlock>
 
                     <ComObjectRefRef RefId="%AID%_O-%TT%00009_R-%TT%0000901" />
@@ -249,8 +315,6 @@
                 </choose>
 
                 <ComObjectRefRef RefId="%AID%_O-%TT%00003_R-%TT%0000301" />
-                <ComObjectRefRef RefId="%AID%_O-%TT%00001_R-%TT%0000101" />
-                <ComObjectRefRef RefId="%AID%_O-%TT%00002_R-%TT%0000201" />
               </ParameterBlock>
             </Channel>
           </Dynamic>
