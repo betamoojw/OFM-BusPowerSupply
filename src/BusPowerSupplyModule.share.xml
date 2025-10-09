@@ -19,7 +19,7 @@
                 <Memory CodeSegment="%AID%_RS-04-00000" Offset="0" BitOffset="0" />
                 <Parameter Id="%AID%_UP-%TT%00001" Name="ResetTime" ParameterType="%AID%_PT-ResetTime" Offset="0" BitOffset="0" Text="Resetzeit" Value="10" SuffixText="s" />
               </Union>
-              <Union SizeInBit="272">
+              <Union SizeInBit="256">
                 <Memory CodeSegment="%AID%_RS-04-00000" Offset="1" BitOffset="0" />
                 <Parameter Id="%AID%_UP-%TT%00002" Name="PowerSupply1ChangeSend" ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="0" Text="Status Netzteil 1 senden" Value="0" />
                 <Parameter Id="%AID%_UP-%TT%00003" Name="PowerSupply2ChangeSend" ParameterType="%AID%_PT-OnOffYesNo" Offset="0" BitOffset="1" Text="Status Netzteil 2 senden" Value="0" />
@@ -33,30 +33,30 @@
                 <Parameter Id="%AID%_UP-%TT%00011" Name="PowerSupply1SendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="1" BitOffset="2" Text="Zeit" Value="0" />
                 <Parameter Id="%AID%_UP-%TT%00012" Name="PowerSupply2SendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="3" BitOffset="0" Text="Zeitbasis" Value="0" />
                 <Parameter Id="%AID%_UP-%TT%00013" Name="PowerSupply2SendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="3" BitOffset="2" Text="Zeit" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00014" Name="BusVoltageSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="5" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
-                <Parameter Id="%AID%_UP-%TT%00015" Name="BusVoltageSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="6" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="V" />
+                <Parameter Id="%AID%_UP-%TT%00014" Name="BusVoltageSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="5" BitOffset="0" Text="Mindeständerung relativ" Value="5" SuffixText="%" />
+                <Parameter Id="%AID%_UP-%TT%00015" Name="BusVoltageSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="6" BitOffset="0" Text="Mindeständerung absolut" Value="0" SuffixText="mV" />
                 <Parameter Id="%AID%_UP-%TT%00016" Name="BusVoltageSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="8" BitOffset="0" Text="Zeitbasis" Value="0" />
                 <Parameter Id="%AID%_UP-%TT%00017" Name="BusVoltageSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="8" BitOffset="2" Text="Zeit" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00018" Name="BusCurrentSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="10" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
-                <Parameter Id="%AID%_UP-%TT%00019" Name="BusCurrentSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="11" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="mA" />
+                <Parameter Id="%AID%_UP-%TT%00018" Name="BusCurrentSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="10" BitOffset="0" Text="Mindeständerung relativ" Value="5" SuffixText="%" />
+                <Parameter Id="%AID%_UP-%TT%00019" Name="BusCurrentSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="11" BitOffset="0" Text="Mindeständerung absolut" Value="0" SuffixText="mA" />
                 <Parameter Id="%AID%_UP-%TT%00020" Name="BusCurrentSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="13" BitOffset="0" Text="Zeitbasis" Value="0" />
                 <Parameter Id="%AID%_UP-%TT%00021" Name="BusCurrentSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="13" BitOffset="2" Text="Zeit" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00022" Name="BusLoadSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="15" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
-                <Parameter Id="%AID%_UP-%TT%00023" Name="BusLoadSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="16" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="%" />
-                <Parameter Id="%AID%_UP-%TT%00024" Name="BusLoadSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="18" BitOffset="0" Text="Zeitbasis" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00025" Name="BusLoadSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="18" BitOffset="2" Text="Zeit" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00026" Name="AuxVoltageSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="20" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
-                <Parameter Id="%AID%_UP-%TT%00027" Name="AuxVoltageSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="21" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="V" />
-                <Parameter Id="%AID%_UP-%TT%00028" Name="AuxVoltageSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="23" BitOffset="0" Text="Zeitbasis" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00029" Name="AuxVoltageSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="23" BitOffset="2" Text="Zeit" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00030" Name="AuxCurrentSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="25" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
-                <Parameter Id="%AID%_UP-%TT%00031" Name="AuxCurrentSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="26" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="mA" />
-                <Parameter Id="%AID%_UP-%TT%00032" Name="AuxCurrentSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="28" BitOffset="0" Text="Zeitbasis" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00033" Name="AuxCurrentSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="28" BitOffset="2" Text="Zeit" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00034" Name="TemperatureSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="30" BitOffset="0" Text="Mindeständerung Prozent" Value="5" SuffixText="%" />
-                <Parameter Id="%AID%_UP-%TT%00035" Name="TemperatureSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="31" BitOffset="0" Text="Mindeständerung Absolut" Value="0" SuffixText="°C" />
-                <Parameter Id="%AID%_UP-%TT%00036" Name="TemperatureSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="33" BitOffset="0" Text="Zeitbasis" Value="0" />
-                <Parameter Id="%AID%_UP-%TT%00037" Name="TemperatureSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="33" BitOffset="2" Text="Zeit" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00022" Name="BusLoadSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="15" BitOffset="0" Text="Mindeständerung relativ" Value="5" SuffixText="%" />
+                <Parameter Id="%AID%_UP-%TT%00023" Name="BusLoadSendMinChangeAbsolute" ParameterType="%AID%_PT-ValueDpt5001" Offset="16" BitOffset="0" Text="Mindeständerung absolut" Value="0" SuffixText="%" />
+                <Parameter Id="%AID%_UP-%TT%00024" Name="BusLoadSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="17" BitOffset="0" Text="Zeitbasis" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00025" Name="BusLoadSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="17" BitOffset="2" Text="Zeit" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00026" Name="AuxVoltageSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="19" BitOffset="0" Text="Mindeständerung relativ" Value="5" SuffixText="%" />
+                <Parameter Id="%AID%_UP-%TT%00027" Name="AuxVoltageSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="20" BitOffset="0" Text="Mindeständerung absolut" Value="0" SuffixText="mV" />
+                <Parameter Id="%AID%_UP-%TT%00028" Name="AuxVoltageSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="22" BitOffset="0" Text="Zeitbasis" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00029" Name="AuxVoltageSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="22" BitOffset="2" Text="Zeit" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00030" Name="AuxCurrentSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="24" BitOffset="0" Text="Mindeständerung relativ" Value="5" SuffixText="%" />
+                <Parameter Id="%AID%_UP-%TT%00031" Name="AuxCurrentSendMinChangeAbsolute" ParameterType="%AID%_PT-MinimumChange" Offset="25" BitOffset="0" Text="Mindeständerung absolut" Value="0" SuffixText="mA" />
+                <Parameter Id="%AID%_UP-%TT%00032" Name="AuxCurrentSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="27" BitOffset="0" Text="Zeitbasis" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00033" Name="AuxCurrentSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="27" BitOffset="2" Text="Zeit" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00034" Name="TemperatureSendMinChangePercent" ParameterType="%AID%_PT-ValueDpt5001" Offset="29" BitOffset="0" Text="Mindeständerung relativ" Value="5" SuffixText="%" />
+                <Parameter Id="%AID%_UP-%TT%00035" Name="TemperatureSendMinChangeAbsolute" ParameterType="%AID%_PT-ValueDpt5001" Offset="30" BitOffset="0" Text="Mindeständerung absolut" Value="0" SuffixText="°C" />
+                <Parameter Id="%AID%_UP-%TT%00036" Name="TemperatureSendCyclicBase" ParameterType="%AID%_PT-DelayBase" Offset="31" BitOffset="0" Text="Zeitbasis" Value="0" />
+                <Parameter Id="%AID%_UP-%TT%00037" Name="TemperatureSendCyclicTime" ParameterType="%AID%_PT-DelayTime" Offset="31" BitOffset="2" Text="Zeit" Value="0" />
               </Union>
             </Parameters>
             <ParameterRefs>
