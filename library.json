@@ -14,7 +14,7 @@
         "url": "https://github.com/OpenKNX/OFM-BusPowerSupply"
     },
     "dependencies": {
-        "robtillaart/INA238": "^0.1.0",
+        "robtillaart/INA238": "^0.1.1",
         "robtillaart/PCT2075": "^0.1.1"
     }
 }
