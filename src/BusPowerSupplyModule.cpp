@@ -217,13 +217,27 @@ void BusPowerSupplyModule::loop(bool configured)
         }
         else if (_pwrActive == 0)
         {
-            if (!_overcurrent || delayCheck(_overcurrentStarted, CURRENT_OVERLOAD_TIMEOUT_MS))
+            uint32_t retryDelay = 60000;
+            if (_overcurrentRetryCount <= 1)
+                retryDelay = 1000;
+            else if (_overcurrentRetryCount == 2)
+                retryDelay = 3000;
+            else if (_overcurrentRetryCount == 3)
+                retryDelay = 5000;
+            else if (_overcurrentRetryCount == 4)
+                retryDelay = 10000;
+            else if (_overcurrentRetryCount == 5)
+                retryDelay = 30000;
+
+            if (!_overcurrent || delayCheck(_overcurrentStarted, retryDelay))
             {
                 if (_pwr1Ok)
                 {
                     pwr2Off();
                     pwr1On();
                     _pwrActive = 1;
+                    _overcurrent = false;
+                    _overcurrentRetryCount = 0;
                     _pwrErrorLogged = false;
                     logInfoP("Power supply started, PWR1 available, switching to PWR1");
                 }
@@ -232,6 +246,8 @@ void BusPowerSupplyModule::loop(bool configured)
                     pwr1Off();
                     pwr2On();
                     _pwrActive = 2;
+                    _overcurrent = false;
+                    _overcurrentRetryCount = 0;
                     _pwrErrorLogged = false;
                     logInfoP("Power supply started, PWR2 available, switching to PWR2");
                 }
@@ -297,6 +313,8 @@ void BusPowerSupplyModule::loop(bool configured)
             _overcurrent = true;
             _overcurrentStarted = delayTimerInit();
             _overcurrentShortStarted = 0;
+            if (_overcurrentRetryCount < 255)
+                _overcurrentRetryCount++;
 
             logErrorP("Maximum overload exceeded (%.2f mA > %u mA), all power off", totalCurrentMa, CURRENT_OVERLOAD_THRESHOLD_MAX_MA);
         }
@@ -313,6 +331,8 @@ void BusPowerSupplyModule::loop(bool configured)
                 _overcurrent = true;
                 _overcurrentStarted = delayTimerInit();
                 _overcurrentShortStarted = 0;
+                if (_overcurrentRetryCount < 255)
+                    _overcurrentRetryCount++;
 
                 logErrorP("Short-time overload exceeded for too long (%.2f mA > %u mA for %u ms), all power off", totalCurrentMa, CURRENT_OVERLOAD_THRESHOLD_SHORT_MA, CURRENT_OVERLOAD_THRESHOLD_SHORT_TIME_MS);
             }

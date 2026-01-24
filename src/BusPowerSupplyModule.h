@@ -20,8 +20,6 @@
 #define CURRENT_OVERLOAD_THRESHOLD_SHORT_MA 2400
 #define CURRENT_OVERLOAD_THRESHOLD_SHORT_TIME_MS 3000
 
-#define CURRENT_OVERLOAD_TIMEOUT_MS 5000
-
 #define MAX_CURRENT_SWITCH_PER_SECOND 5
 #define POWER_SUPPLY_SWITCH_RECENT_RESET_MS 1000
 
@@ -75,6 +73,7 @@ class BusPowerSupplyModule : public OpenKNX::Module
     bool _overcurrent = false;
     uint32_t _overcurrentStarted = 0;
     uint32_t _overcurrentShortStarted = 0;
+    uint8_t _overcurrentRetryCount = 0;
     uint8_t _recentPwrSupplySwitches = 0;
     uint32_t _lastPwrSupplySwitch = 0;
 
