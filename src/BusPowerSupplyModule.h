@@ -7,8 +7,8 @@
   #include <PCT2075.h>
 #endif
 
-// #define OPENKNX_BPS_FLASH_VERSION 0
-// #define OPENKNX_BPS_FLASH_MAGIC_WORD 0
+#define OPENKNX_BPS_FLASH_VERSION 0
+#define OPENKNX_BPS_FLASH_MAGIC_WORD 2847103552
 
 #define BUS_LOAD_UPDATE_RATE 1000
 #define BUS_LOAD_MAX_BYTES_PER_SECOND 800
@@ -22,6 +22,8 @@
 
 #define MAX_CURRENT_SWITCH_PER_SECOND 5
 #define POWER_SUPPLY_SWITCH_RECENT_RESET_MS 1000
+
+#define HOLD_RESET_DELAY_MS 500
 
 class BusPowerSupplyModule : public OpenKNX::Module
 {
@@ -39,6 +41,7 @@ class BusPowerSupplyModule : public OpenKNX::Module
 
     void savePower() override;
     bool restorePower() override;
+    void processBeforeRestart() override;
 
     const std::string name() override;
     const std::string version() override;
@@ -76,6 +79,10 @@ class BusPowerSupplyModule : public OpenKNX::Module
     uint8_t _overcurrentRetryCount = 0;
     uint8_t _recentPwrSupplySwitches = 0;
     uint32_t _lastPwrSupplySwitch = 0;
+    
+    bool _pwrReadFromFlash = false;
+    bool _firstLoop = true;
+    uint32_t _holdResetDelay = 0;
 
     bool _resetActive = false;
     uint32_t _resetStarted = 0;

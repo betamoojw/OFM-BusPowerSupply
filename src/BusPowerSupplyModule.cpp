@@ -38,11 +38,9 @@ void BusPowerSupplyModule::processInputKo(GroupObject &ko)
 void BusPowerSupplyModule::setup(bool configured)
 {
     openknx.gpio.pinMode(OPENKNX_BPS_PWR1_CHECK_PIN, INPUT);
-    openknx.gpio.pinMode(OPENKNX_BPS_PWR1_SWITCH_ON_PIN, OUTPUT, true, !OPENKNX_BPS_PWR_SWITCH_ACTIVE_ON);
     openknx.gpio.pinMode(OPENKNX_BPS_PWR1_ALERT_PIN, INPUT);
 
     openknx.gpio.pinMode(OPENKNX_BPS_PWR2_CHECK_PIN, INPUT);
-    openknx.gpio.pinMode(OPENKNX_BPS_PWR2_SWITCH_ON_PIN, OUTPUT, true, !OPENKNX_BPS_PWR_SWITCH_ACTIVE_ON);
     openknx.gpio.pinMode(OPENKNX_BPS_PWR2_ALERT_PIN, INPUT);
 
     openknx.gpio.pinMode(OPENKNX_BPS_STATUS_BUS, OUTPUT, true, !OPENKNX_BPS_STATUS_ACTIVE_ON);
@@ -118,6 +116,50 @@ float BusPowerSupplyModule::estimateBusLoad()
 
 void BusPowerSupplyModule::loop(bool configured)
 {
+    if (_firstLoop)
+    {
+        if (_pwrReadFromFlash)
+        {
+            if (_pwrActive == 1)
+            {
+                openknx.gpio.pinMode(OPENKNX_BPS_PWR2_SWITCH_ON_PIN, OUTPUT, true, !OPENKNX_BPS_PWR_SWITCH_ACTIVE_ON);
+                openknx.gpio.pinMode(OPENKNX_BPS_PWR1_SWITCH_ON_PIN, OUTPUT, true, OPENKNX_BPS_PWR_SWITCH_ACTIVE_ON);
+                logDebugP("PWR1 activated after restart");
+            }
+            else if (_pwrActive == 2)
+            {
+                openknx.gpio.pinMode(OPENKNX_BPS_PWR1_SWITCH_ON_PIN, OUTPUT, true, !OPENKNX_BPS_PWR_SWITCH_ACTIVE_ON);
+                openknx.gpio.pinMode(OPENKNX_BPS_PWR2_SWITCH_ON_PIN, OUTPUT, true, OPENKNX_BPS_PWR_SWITCH_ACTIVE_ON);
+                logDebugP("PWR2 activated after restart");
+            }
+        }
+        
+        // no longer hold power supply
+        openknx.gpio.pinMode(OPENKNX_BPS_PWR1_HOLD_PIN, OUTPUT, true, !OPENKNX_BPS_PWR_HOLD_ACTIVE_ON);
+        openknx.gpio.pinMode(OPENKNX_BPS_PWR2_HOLD_PIN, OUTPUT, true, !OPENKNX_BPS_PWR_HOLD_ACTIVE_ON);
+
+        // reset power supply hold after boot
+        openknx.gpio.pinMode(OPENKNX_BPS_PWR1_RESET_PIN, OUTPUT, true, OPENKNX_BPS_PWR_RESET_ACTIVE_ON);
+        openknx.gpio.pinMode(OPENKNX_BPS_PWR2_RESET_PIN, OUTPUT, true, OPENKNX_BPS_PWR_RESET_ACTIVE_ON);
+
+        _firstLoop = false;
+        _holdResetDelay = delayTimerInit();
+    }
+
+    if (_holdResetDelay > 0)
+    {
+        if (delayCheck(_holdResetDelay, HOLD_RESET_DELAY_MS))
+        {
+            openknx.gpio.pinMode(OPENKNX_BPS_PWR1_RESET_PIN, OUTPUT, true, !OPENKNX_BPS_PWR_RESET_ACTIVE_ON);
+            openknx.gpio.pinMode(OPENKNX_BPS_PWR2_RESET_PIN, OUTPUT, true, !OPENKNX_BPS_PWR_RESET_ACTIVE_ON);
+
+            logDebugP("Hold reset after boot delay");
+            _holdResetDelay = 0;
+        }
+        else
+            return;
+    }
+
     float pwr1Voltage = (float)analogRead(OPENKNX_BPS_PWR1_CHECK_PIN) / (float)4095 * (float)3.3 * (float)OPENKNX_BPS_PWR_CHECK_FACTOR;
     bool pwr1Ok = pwr1Voltage > POWER_OK_THRESHOLD_VOLTAGE;
     if (_pwr1Ok != pwr1Ok)
@@ -436,41 +478,56 @@ void BusPowerSupplyModule::readFlash(const uint8_t *data, const uint16_t size)
     if (size == 0)
         return;
 
-    // logDebugP("Reading state from flash");
-    // logIndentUp();
+    logDebugP("Reading state from flash");
+    logIndentUp();
 
-    // uint8_t version = openknx.flash.readByte();
-    // if (version != OPENKNX_BPS_FLASH_VERSION)
-    // {
-    //     logDebugP("Invalid flash version %u", version);
-    //     return;
-    // }
+    uint8_t version = openknx.flash.readByte();
+    if (version != OPENKNX_BPS_FLASH_VERSION)
+    {
+        logDebugP("Invalid flash version %u", version);
+        return;
+    }
 
-    // uint32_t magicWord = openknx.flash.readInt();
-    // if (magicWord != OPENKNX_BPS_FLASH_MAGIC_WORD)
-    // {
-    //     logDebugP("Flash content invalid");
-    //     return;
-    // }
+    uint32_t magicWord = openknx.flash.readInt();
+    if (magicWord != OPENKNX_BPS_FLASH_MAGIC_WORD)
+    {
+        logDebugP("Flash content invalid");
+        return;
+    }
 
-    
-    // logIndentDown();
+    _pwrActive = openknx.flash.readByte();
+    if (_pwrActive == 1 || _pwrActive == 2)
+    {
+        logDebugP("Power supply active from flash: %u", _pwrActive);
+        _pwrReadFromFlash = true;
+    }
+    else
+    {
+        _pwrActive = 0;
+        logErrorP("Power supply active from flash invalid: %u", _pwrActive);
+    }
+
+    logIndentDown();
 }
 
 void BusPowerSupplyModule::writeFlash()
 {
-    // openknx.flash.writeByte(OPENKNX_BPS_FLASH_VERSION);
-    // openknx.flash.writeInt(OPENKNX_BPS_FLASH_MAGIC_WORD);
+    openknx.flash.writeByte(OPENKNX_BPS_FLASH_VERSION);
+    openknx.flash.writeInt(OPENKNX_BPS_FLASH_MAGIC_WORD);
+
+    openknx.flash.writeByte(_pwrActive);
+
+    logDebugP("State written to flash");
 }
 
 uint16_t BusPowerSupplyModule::flashSize()
 {
-    return 0;
+    return 1 + 4 + 1; // version + magic word + lastPwrActive
 }
 
 void BusPowerSupplyModule::savePower()
 {
-    
+
 }
 
 bool BusPowerSupplyModule::restorePower()
@@ -478,6 +535,22 @@ bool BusPowerSupplyModule::restorePower()
     bool success = true;
     
     return success;
+}
+
+void BusPowerSupplyModule::processBeforeRestart()
+{
+    openknx.flash.save();
+
+    if (_pwrActive == 1)
+    {
+        logDebugP("Restart and hold PWR1 active");
+        openknx.gpio.digitalWrite(OPENKNX_BPS_PWR1_HOLD_PIN, OPENKNX_BPS_PWR_HOLD_ACTIVE_ON);
+    }
+    else if (_pwrActive == 2)
+    {
+        logDebugP("Restart and hold PWR2 active");
+        openknx.gpio.digitalWrite(OPENKNX_BPS_PWR2_HOLD_PIN, OPENKNX_BPS_PWR_HOLD_ACTIVE_ON);
+    }
 }
 
 void BusPowerSupplyModule::showHelp()
