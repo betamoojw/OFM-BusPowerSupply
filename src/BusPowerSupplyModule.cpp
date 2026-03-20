@@ -133,6 +133,12 @@ void BusPowerSupplyModule::loop(bool configured)
                 logDebugP("PWR2 activated after restart");
             }
         }
+        else
+        {
+            openknx.gpio.pinMode(OPENKNX_BPS_PWR1_SWITCH_ON_PIN, OUTPUT, true, !OPENKNX_BPS_PWR_SWITCH_ACTIVE_ON);
+            openknx.gpio.pinMode(OPENKNX_BPS_PWR2_SWITCH_ON_PIN, OUTPUT, true, !OPENKNX_BPS_PWR_SWITCH_ACTIVE_ON);
+            logDebugP("No power supply activated after restart");
+        }
         
         // no longer hold power supply
         openknx.gpio.pinMode(OPENKNX_BPS_PWR1_HOLD_PIN, OUTPUT, true, !OPENKNX_BPS_PWR_HOLD_ACTIVE_ON);
